@@ -6,7 +6,7 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@ToString(exclude = "owner")
+@ToString(exclude = "product")
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "product_version")
@@ -27,7 +27,7 @@ public class ProductVersion {
     private int version;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", referencedColumnName = "id") //
-    private Product owner;
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 }
 

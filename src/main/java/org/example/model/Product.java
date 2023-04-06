@@ -25,7 +25,7 @@ public class Product {
     @Column
     private int price;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductVersion> productVersion;
 }
 

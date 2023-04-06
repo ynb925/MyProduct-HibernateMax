@@ -13,68 +13,68 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        Configuration con = new Configuration().configure();
-        con.addAnnotatedClass(Product.class);
-        con.addAnnotatedClass(ProductVersion.class);
+        Configuration configuration = new Configuration().configure();
+        configuration.addAnnotatedClass(Product.class);
+        configuration.addAnnotatedClass(ProductVersion.class);
         StandardServiceRegistryBuilder sBuilder = new StandardServiceRegistryBuilder()
-                .applySettings(con.getProperties());
-        SessionFactory sf = con.buildSessionFactory(sBuilder.build());
+                .applySettings(configuration.getProperties());
+        SessionFactory sf = configuration.buildSessionFactory(sBuilder.build());
 
         ProductRepository productRepository = new ProductRepository(sf);
         ProductVersionRepository productVersionRepository = new ProductVersionRepository(sf);
 
         Product product = new Product();
-        product.setName("alalalal");
-        product.setPrice(2123123455);
+        product.setName("someName");
+        product.setPrice(22244);
 
         ProductVersion productVersion = new ProductVersion();
-        productVersion.setDetails("rsgsrgfd");
-        productVersion.setCreator("eerrfeef");
+        productVersion.setDetails("set any details text");
+        productVersion.setCreator("set any creators text");
         productVersion.setVersion(66789);
 
         ProductVersion productVersion1 = new ProductVersion();
-        productVersion1.setDetails("aded");
-        productVersion1.setCreator("eeriliuujyrfeef");
+        productVersion1.setDetails("set any details text1");
+        productVersion1.setCreator("set any creators text1");
         productVersion1.setVersion(976);
 
-        productVersion.setOwner(product);
-        productVersion1.setOwner(product);
+        productVersion.setProduct(product);
+        productVersion1.setProduct(product);
         product.setProductVersion(List.of(productVersion1));
 
-        System.out.println("----------  SAVE  Prod  ------------");
+        System.out.println("----------  SAVE  Product  ------------");
         productRepository.save(product);
         System.out.println(product);
         System.out.println(productVersion);
 
-        System.out.println("-----------  FIND BY ID  Prod  -----------");
-        Product byId = productRepository.findById(17);
-        System.out.println(byId);
+        System.out.println("-----------  FIND BY ID  Product  -----------");
+        Product productByID = productRepository.findById(17);
+        System.out.println(productByID);
 
 
-        System.out.println("-----------  DEL BY ID  Prod  -----------");
-        boolean delId = productRepository.deleteById(9);
-        System.out.println(delId);
+        System.out.println("-----------  DEL BY ID  Product  -----------");
+        boolean productDeleteById = productRepository.deleteById(9);
+        System.out.println(productDeleteById);
 
-        System.out.println("-----------  FIND ALL Prod  -----------");
-        List<Product> findAll = productRepository.findAll();
-        System.out.println(findAll);
+        System.out.println("-----------  FIND ALL Product  -----------");
+        List<Product> findAllProduct = productRepository.findAll();
+        System.out.println(findAllProduct);
 
-        System.out.println("----------  SAVE  Prod ver  ------------");
+        System.out.println("----------  SAVE  ProductVersion  ------------");
         productVersionRepository.savePVR(productVersion);
         System.out.println(product);
         System.out.println(productVersion);
 
-        System.out.println("-----------  FIND BY ID  Prod ver -----------");
-        ProductVersion byIdPVR = productVersionRepository.findByIdPVR(2);
-        System.out.println(byIdPVR);
+        System.out.println("-----------  FIND BY ID  ProductVersion -----------");
+        ProductVersion ProductVersionByID = productVersionRepository.findByIdPVR(2);
+        System.out.println(ProductVersionByID);
 
-        System.out.println("-----------  DEL BY ID  Prod  ver  -----------");
-        boolean delIdPVR = productVersionRepository.deleteByIdPVR(1);
-        System.out.println(delIdPVR);
+        System.out.println("-----------  DEL BY ID  ProductVersion  -----------");
+        boolean productVersionDeleteById = productVersionRepository.deleteByIdPVR(1);
+        System.out.println(productVersionDeleteById);
 
-        System.out.println("-----------  FIND ALL Prod ver -----------");
-        List<ProductVersion> findAllPVR = productVersionRepository.findAllPVR();
-        System.out.println(findAllPVR);
+        System.out.println("-----------  FIND ALL ProductVersion -----------");
+        List<ProductVersion> findAllProductVersion = productVersionRepository.findAllPVR();
+        System.out.println(findAllProductVersion);
 
         productRepository.close();
         productVersionRepository.close();
