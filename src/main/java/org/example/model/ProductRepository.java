@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductRepository {
 
-    SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public ProductRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

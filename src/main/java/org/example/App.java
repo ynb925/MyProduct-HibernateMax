@@ -60,20 +60,20 @@ public class App {
         System.out.println(findAllProduct);
 
         System.out.println("----------  SAVE  ProductVersion  ------------");
-        productVersionRepository.savePVR(productVersion);
+        productVersionRepository.save(productVersion);
         System.out.println(product);
         System.out.println(productVersion);
 
         System.out.println("-----------  FIND BY ID  ProductVersion -----------");
-        ProductVersion ProductVersionByID = productVersionRepository.findByIdPVR(2);
+        ProductVersion ProductVersionByID = productVersionRepository.findById(2);
         System.out.println(ProductVersionByID);
 
         System.out.println("-----------  DEL BY ID  ProductVersion  -----------");
-        boolean productVersionDeleteById = productVersionRepository.deleteByIdPVR(1);
+        boolean productVersionDeleteById = productVersionRepository.deleteById(1);
         System.out.println(productVersionDeleteById);
 
         System.out.println("-----------  FIND ALL ProductVersion -----------");
-        List<ProductVersion> findAllProductVersion = productVersionRepository.findAllPVR();
+        List<ProductVersion> findAllProductVersion = productVersionRepository.findAll();
         System.out.println(findAllProductVersion);
 
         productRepository.close();

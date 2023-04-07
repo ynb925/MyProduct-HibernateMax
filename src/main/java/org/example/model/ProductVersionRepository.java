@@ -9,13 +9,13 @@ import java.util.List;
 
 public class ProductVersionRepository {
 
-    SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public ProductVersionRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public ProductVersion savePVR(ProductVersion productVersion) {
+    public ProductVersion save(ProductVersion productVersion) {
         Session session = sessionFactory.openSession();
         var transaction = session.beginTransaction();
 
@@ -26,7 +26,7 @@ public class ProductVersionRepository {
         return productVersion;
     }
 
-    public ProductVersion findByIdPVR(long id) {
+    public ProductVersion findById(long id) {
         Session session = sessionFactory.openSession();
         var transaction = session.beginTransaction();
 
@@ -37,7 +37,7 @@ public class ProductVersionRepository {
         return identifier;
     }
 
-    public boolean deleteByIdPVR(long id) {
+    public boolean deleteById(long id) {
         boolean result = false;
 
         Session session = sessionFactory.openSession();
@@ -53,7 +53,7 @@ public class ProductVersionRepository {
         return result;
     }
 
-    public List<ProductVersion> findAllPVR() {
+    public List<ProductVersion> findAll() {
         List<ProductVersion> productVersions;
 
         Session session = sessionFactory.openSession();
